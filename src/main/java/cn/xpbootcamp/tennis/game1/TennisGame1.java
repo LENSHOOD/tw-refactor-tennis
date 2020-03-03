@@ -26,47 +26,78 @@ public class TennisGame1 implements TennisGame {
     @Override
     public String getScore() {
         String score = "";
-        int tempScore = 0;
-        if (mScore1 == mScore2) {
-            if (mScore1 == 0) {
-                score = "Love-All";
-            } else if (mScore1 == 1) {
-                score = "Fifteen-All";
-            } else if (mScore1 == 2) {
-                score = "Thirty-All";
-            } else {
-                score = "Deuce";
-            }
-        } else if (mScore1 >= 4 || mScore2 >= 4) {
-            int minusResult = mScore1 - mScore2;
-            if (minusResult == 1) {
-                score = "Advantage player1";
-            } else if (minusResult == -1) {
-                score = "Advantage player2";
-            } else if (minusResult >= 2) {
-                score = "Win for player1";
-            } else {
-                score = "Win for player2";
-            }
+        if (isScoreEqual()) {
+            score = equalScore();
+        } else if (isScore1GreaterThan4()) {
+            score = winnerScore();
+        } else if (isScore2GreaterThan4()) {
+            score = winnerScore();
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) {
-                    tempScore = mScore1;
-                } else {
-                    score += "-";
-                    tempScore = mScore2;
-                }
-                if (tempScore == 0) {
-                    score += "Love";
-                } else if (tempScore == 1) {
-                    score += "Fifteen";
-                } else if (tempScore == 2) {
-                    score += "Thirty";
-                } else if (tempScore == 3) {
-                    score += "Forty";
-                }
+            score = calculateScore(score);
+        }
+        return score;
+    }
+
+    private String calculateScore(String score) {
+        int tempScore;
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) {
+                tempScore = mScore1;
+            } else {
+                score += "-";
+                tempScore = mScore2;
+            }
+            if (tempScore == 0) {
+                score += "Love";
+            } else if (tempScore == 1) {
+                score += "Fifteen";
+            } else if (tempScore == 2) {
+                score += "Thirty";
+            } else if (tempScore == 3) {
+                score += "Forty";
             }
         }
         return score;
+    }
+
+    private String winnerScore() {
+        String score;
+        int minusResult = mScore1 - mScore2;
+        if (minusResult == 1) {
+            score = "Advantage player1";
+        } else if (minusResult == -1) {
+            score = "Advantage player2";
+        } else if (minusResult >= 2) {
+            score = "Win for player1";
+        } else {
+            score = "Win for player2";
+        }
+        return score;
+    }
+
+    private String equalScore() {
+        String score;
+        if (mScore1 == 0) {
+            score = "Love-All";
+        } else if (mScore1 == 1) {
+            score = "Fifteen-All";
+        } else if (mScore1 == 2) {
+            score = "Thirty-All";
+        } else {
+            score = "Deuce";
+        }
+        return score;
+    }
+
+    private boolean isScore2GreaterThan4() {
+        return mScore2 >= 4;
+    }
+
+    private boolean isScore1GreaterThan4() {
+        return mScore1 >= 4;
+    }
+
+    private boolean isScoreEqual() {
+        return mScore1 == mScore2;
     }
 }
