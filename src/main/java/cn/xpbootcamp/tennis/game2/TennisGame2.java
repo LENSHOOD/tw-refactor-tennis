@@ -2,18 +2,12 @@ package cn.xpbootcamp.tennis.game2;
 
 import cn.xpbootcamp.tennis.TennisGame;
 
-public class TennisGame2 implements TennisGame {
-    private int p1point = 0;
-    private int p2point = 0;
-
+public class TennisGame2 extends TennisGame {
     private String p1Res = "";
     private String p2Res = "";
-    private String player1Name;
-    private String player2Name;
 
     public TennisGame2(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        super(player1Name, player2Name);
     }
 
     @Override
@@ -98,22 +92,5 @@ public class TennisGame2 implements TennisGame {
 
     private boolean isScoreEqual() {
         return p1point == p2point;
-    }
-
-    private void p1Score() {
-        p1point++;
-    }
-
-    private void p2Score() {
-        p2point++;
-    }
-
-    @Override
-    public void wonPoint(String player) {
-        if ("player1".equals(player)) {
-            p1Score();
-        } else {
-            p2Score();
-        }
     }
 }

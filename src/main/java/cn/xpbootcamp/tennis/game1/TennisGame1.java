@@ -2,25 +2,9 @@ package cn.xpbootcamp.tennis.game1;
 
 import cn.xpbootcamp.tennis.TennisGame;
 
-public class TennisGame1 implements TennisGame {
-
-    private int mScore1 = 0;
-    private int mScore2 = 0;
-    private String player1Name;
-    private String player2Name;
-
+public class TennisGame1 extends TennisGame {
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
-    }
-
-    @Override
-    public void wonPoint(String playerName) {
-        if ("player1".equals(playerName)) {
-            mScore1 += 1;
-        } else {
-            mScore2 += 1;
-        }
+        super(player1Name, player2Name);
     }
 
     @Override
@@ -42,10 +26,10 @@ public class TennisGame1 implements TennisGame {
         int tempScore;
         for (int i = 1; i < 3; i++) {
             if (i == 1) {
-                tempScore = mScore1;
+                tempScore = p1point;
             } else {
                 score += "-";
-                tempScore = mScore2;
+                tempScore = p2point;
             }
             if (tempScore == 0) {
                 score += "Love";
@@ -62,7 +46,7 @@ public class TennisGame1 implements TennisGame {
 
     private String winnerScore() {
         String score;
-        int minusResult = mScore1 - mScore2;
+        int minusResult = p1point - p2point;
         if (minusResult == 1) {
             score = "Advantage player1";
         } else if (minusResult == -1) {
@@ -77,11 +61,11 @@ public class TennisGame1 implements TennisGame {
 
     private String equalScore() {
         String score;
-        if (mScore1 == 0) {
+        if (p1point == 0) {
             score = "Love-All";
-        } else if (mScore1 == 1) {
+        } else if (p1point == 1) {
             score = "Fifteen-All";
-        } else if (mScore1 == 2) {
+        } else if (p1point == 2) {
             score = "Thirty-All";
         } else {
             score = "Deuce";
@@ -90,14 +74,14 @@ public class TennisGame1 implements TennisGame {
     }
 
     private boolean isScore2GreaterThan4() {
-        return mScore2 >= 4;
+        return p2point >= 4;
     }
 
     private boolean isScore1GreaterThan4() {
-        return mScore1 >= 4;
+        return p1point >= 4;
     }
 
     private boolean isScoreEqual() {
-        return mScore1 == mScore2;
+        return p1point == p2point;
     }
 }
