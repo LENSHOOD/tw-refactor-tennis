@@ -27,16 +27,16 @@ public class TennisGame1 extends TennisGame {
     private String  winnerScore() {
         int minusResult = p1point - p2point;
         if (minusResult == 1) {
-            return "Advantage player1";
+            return "Advantage " + player1Name;
         }
         if (minusResult == -1) {
-            return  "Advantage player2";
+            return  "Advantage " + player2Name;
         }
         if (minusResult >= 2) {
-            return  "Win for player1";
+            return  "Win for " + player1Name;
         }
 
-        return "Win for player2";
+        return "Win for " + player2Name;
     }
 
     private String mergeScore() {
