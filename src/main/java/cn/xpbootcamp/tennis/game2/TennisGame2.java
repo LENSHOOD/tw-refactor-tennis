@@ -14,7 +14,7 @@ public class TennisGame2 extends TennisGame {
     public String getScore() {
         String score = "";
         if (isScoreEqual()) {
-            score = equalScore(score);
+            score = equalScore();
         }
 
         if (p1point > p2point) {
@@ -31,7 +31,7 @@ public class TennisGame2 extends TennisGame {
                 p2Res = getScoreByPoint(p2point);
                 score = p1Res + "-" + p2Res;
             }
-            if (p1point >= 4 && p2point >= 0) {
+            if (p1point >= 4) {
                 if ((p1point - p2point) >= 2) {
                     score = "Win for player1";
                 }
@@ -52,7 +52,7 @@ public class TennisGame2 extends TennisGame {
             if (p1point >= 3) {
                 score = "Advantage player2";
             }
-            if (p2point >= 4 && p1point >= 0) {
+            if (p2point >= 4) {
                 if ((p2point - p1point) >= 2) {
                     score = "Win for player2";
                 }
@@ -60,37 +60,5 @@ public class TennisGame2 extends TennisGame {
         }
 
         return score;
-    }
-
-    private String getScoreByPoint(int point) {
-        if (point == 0) {
-            return "Love";
-        }
-        if (point == 1) {
-            return "Fifteen";
-        }
-        if (point == 2) {
-            return "Thirty";
-        }
-        if (point == 3) {
-            return "Forty";
-        }
-
-        return "";
-    }
-
-    private String equalScore(String score) {
-        if (p1point < 4) {
-            score = getScoreByPoint(p1point);
-            score += "-All";
-        }
-        if (p1point >= 3) {
-            score = "Deuce";
-        }
-        return score;
-    }
-
-    private boolean isScoreEqual() {
-        return p1point == p2point;
     }
 }

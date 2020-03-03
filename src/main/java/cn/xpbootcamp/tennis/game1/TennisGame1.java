@@ -11,15 +11,16 @@ public class TennisGame1 extends TennisGame {
     public String getScore() {
         String score = "";
         if (isScoreEqual()) {
-            score = equalScore();
-        } else if (isScore1GreaterThan4()) {
-            score = winnerScore();
-        } else if (isScore2GreaterThan4()) {
-            score = winnerScore();
-        } else {
-            score = calculateScore(score);
+            return equalScore();
         }
-        return score;
+        if (isScore1GreaterThan4()) {
+            return winnerScore();
+        }
+        if (isScore2GreaterThan4()) {
+            return winnerScore();
+        }
+
+        return calculateScore(score);
     }
 
     private String calculateScore(String score) {
@@ -59,29 +60,11 @@ public class TennisGame1 extends TennisGame {
         return score;
     }
 
-    private String equalScore() {
-        String score;
-        if (p1point == 0) {
-            score = "Love-All";
-        } else if (p1point == 1) {
-            score = "Fifteen-All";
-        } else if (p1point == 2) {
-            score = "Thirty-All";
-        } else {
-            score = "Deuce";
-        }
-        return score;
-    }
-
     private boolean isScore2GreaterThan4() {
         return p2point >= 4;
     }
 
     private boolean isScore1GreaterThan4() {
         return p1point >= 4;
-    }
-
-    private boolean isScoreEqual() {
-        return p1point == p2point;
     }
 }

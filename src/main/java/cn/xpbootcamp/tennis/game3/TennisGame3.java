@@ -10,16 +10,17 @@ public class TennisGame3 extends TennisGame {
     @Override
     public String getScore() {
         String s;
+        if (isScoreEqual()) {
+            return equalScore();
+        }
+
         if (p1point >= 4 || p2point >= 4 || p1point + p2point == 6) {
-            if (p1point == p2point) {
-                return "Deuce";
-            }
             s = p1point > p2point ? player1Name : player2Name;
             return ((p1point - p2point)*(p1point - p2point) == 1) ? "Advantage " + s : "Win for " + s;
         } else {
             String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
             s = p[p1point];
-            return (p1point == p2point) ? s + "-All" : s + "-" + p[p2point];
+            return s + "-" + p[p2point];
         }
     }
 }
